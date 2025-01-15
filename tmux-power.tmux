@@ -28,6 +28,7 @@ session_icon="$(tmux_get '@tmux_power_session_icon' '')"
 user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
+kubernetes_icon="⎈"
 show_user="$(tmux_get @tmux_power_show_user true)"
 show_host="$(tmux_get @tmux_power_show_host true)"
 show_session="$(tmux_get @tmux_power_show_session true)"
@@ -37,6 +38,8 @@ show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
+kubernetes_context="#(kubectl config current-context)"
+kubernetes_namespace="#(kubectl config view --minify -o jsonpath='{..namespace}')"
 
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
@@ -124,7 +127,7 @@ tmux_set status-left "$LS"
 # Right side of status bar
 tmux_set status-right-bg "$G0"
 tmux_set status-right-length 150
-RS="#[fg=$G2]$larrow#[fg=$TC,bg=$G2] $time_icon $time_format #[fg=$TC,bg=$G2]$larrow#[fg=$G0,bg=$TC] $date_icon $date_format #[fg=$G2]$larrow#[fg=$TC,bg=$G2] $session_icon #S "
+RS="#[fg=$G2]$larrow#[fg=$TC,bg=$G2] $kubernetes_icon #[fg=cyan]$kubernetes_context:#[fg=red]$kubernetes_namespace #[fg=$G0,bg=$G2]$larrow#[bg=default]#[fg=$G2,bg=$G0]$larrow#[bg=$G2,fg=$TC] $session_icon #S "
 if "$show_download_speed"; then
     RS="#[fg=$G1,bg=$G0]$larrow#[fg=$TC,bg=$G1] $download_speed_icon #{download_speed} $RS"
 fi

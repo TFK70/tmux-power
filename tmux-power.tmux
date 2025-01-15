@@ -124,7 +124,7 @@ tmux_set status-left "$LS"
 # Right side of status bar
 tmux_set status-right-bg "$G0"
 tmux_set status-right-length 150
-RS="#[fg=$G2]$larrow#[fg=$TC,bg=$G2] $time_icon $time_format #[fg=$TC,bg=$G2]$larrow#[fg=$G0,bg=$TC] $date_icon $date_format #[fg=$G2]$larrow#[fg=$TC,bg=$G2] $session_icon #S 123"
+RS="#[fg=$G2]$larrow#[fg=$TC,bg=$G2] $time_icon $time_format #[fg=$TC,bg=$G2]$larrow#[fg=$G0,bg=$TC] $date_icon $date_format #[fg=$G2]$larrow#[fg=$TC,bg=$G2] $session_icon #S "
 if "$show_download_speed"; then
     RS="#[fg=$G1,bg=$G0]$larrow#[fg=$TC,bg=$G1] $download_speed_icon #{download_speed} $RS"
 fi

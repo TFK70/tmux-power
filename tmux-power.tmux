@@ -84,7 +84,7 @@ tmux_set status-interval 1
 tmux_set status on
 
 # Basic status bar colors
-tmux_set status-bg "$G0"
+tmux_set status-bg "default"
 tmux_set status-fg "$G4"
 tmux_set status-attr none
 
@@ -140,8 +140,8 @@ fi
 tmux_set status-right "$RS"
 
 # Window status format
-tmux_set window-status-format         "#[fg=$G0,bg=$G2]$rarrow#[fg=$TC,bg=$G2] #I:#W#F #[fg=$G2,bg=$G0]$rarrow"
-tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$rarrow#[fg=$G0,bg=$TC,bold] #I:#W#F #[fg=$TC,bg=$G0,nobold]$rarrow"
+tmux_set window-status-format         "#[fg=$G0,bg=$G2]$rarrow#[fg=$TC,bg=$G2] #I:#W#F #[fg=$G2]#{?#{==:#{session_windows},#{window_index}},#[bg=$TC] ,#[bg=$G0]$rarrow}"
+tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$rarrow#[fg=$G0,bg=$TC,bold] #I:#W#F #[fg=$TC,nobold]#{?#{==:#{session_windows},#{window_index}},#[bg=$G0] ,#[bg=$G0]$rarrow}"
 
 # Window status style
 tmux_set window-status-style          "fg=$TC,bg=$G0,none"

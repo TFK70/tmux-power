@@ -129,7 +129,7 @@ tmux_set window-status-last-style     "fg=$TC,bg=default,nobold"
 tmux_set window-status-activity-style "fg=$TC,bg=default,nobold"
 
 # Window separator
-tmux_set window-status-separator ""
+tmux_set window-status-separator "|"
 
 # Pane border
 tmux_set pane-border-style "fg=$G3,bg=default"

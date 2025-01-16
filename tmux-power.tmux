@@ -29,7 +29,6 @@ user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
 kubernetes_icon="⎈"
-vpn_icon="🔗"
 show_user="$(tmux_get @tmux_power_show_user true)"
 show_host="$(tmux_get @tmux_power_show_host true)"
 show_session="$(tmux_get @tmux_power_show_session true)"
@@ -41,7 +40,6 @@ time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
 kubernetes_context="#(kubectl config current-context)"
 kubernetes_namespace="#(kubectl config view --minify -o jsonpath='{..namespace}')"
-active_wg_connection="#(nmcli c show --active | grep wireguard | grep -oP \"^\S*\")"
 
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
@@ -108,8 +106,7 @@ tmux_set status-left "$LS"
 # Right side of status bar
 tmux_set status-right-bg "$G0"
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=default] $vpn_icon #[bold]$active_wg_connection #[nobold]"
-RS="$RS#[fg=white]|#[fg=$TC,bg=default] $kubernetes_icon #[fg=cyan]$kubernetes_context:#[fg=red]$kubernetes_namespace "
+RS="$RS#[fg=$TC,bg=default] $kubernetes_icon #[fg=cyan]$kubernetes_context:#[fg=red]$kubernetes_namespace "
 RS="$RS#[fg=white]|#[bg=default,fg=$TC] $session_icon #S "
 RS="$RS"
 if "$show_download_speed"; then

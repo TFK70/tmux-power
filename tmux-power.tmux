@@ -99,35 +99,14 @@ tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$G0]$rarrow"
 tmux_set status-left-bg "$G0"
 tmux_set status-left-length 150
 
-# user@host
-if "$show_user" && "$show_host"; then
-    LS="#[fg=$G0,bg=$TC,bold] $user_icon $(whoami)@#h #[fg=$TC,bg=$G2,nobold]$rarrow"
-elif "$show_user"; then
-    LS="#[fg=$G0,bg=$TC,bold] $user_icon $(whoami) #[fg=$TC,bg=$G2,nobold]$rarrow"
-elif "$show_host"; then
-    LS="#[fg=$G0,bg=$TC,bold] #h #[fg=$TC,bg=$G2,nobold]$rarrow"
-fi
+LS=""
 
-# session
-# if "$show_session"; then
-    # LS="$LS#[fg=$TC,bg=$G2] $session_icon #S "
-# fi
-
-# upload speed
-if "$show_upload_speed"; then
-    LS="$LS#[fg=$G2,bg=$G1]$rarrow#[fg=$TC,bg=$G1] $upload_speed_icon #{upload_speed} #[fg=$G1,bg=$G0]$rarrow"
-else
-    LS="$LS#[fg=$G2,bg=$G0]$rarrow"
-fi
-if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
-    LS="$LS#{prefix_highlight}"
-fi
 tmux_set status-left "$LS"
 
 # Right side of status bar
 tmux_set status-right-bg "$G0"
 tmux_set status-right-length 150
-RS="#[fg=$G2]$larrow#[fg=$TC,bg=$G2] $kubernetes_icon #[fg=cyan]$kubernetes_context:#[fg=red]$kubernetes_namespace #[fg=$G0,bg=$G2]$larrow#[bg=default]#[fg=$G2,bg=$G0]$larrow#[bg=$G2,fg=$TC] $session_icon #S "
+RS="#[fg=$TC,bg=default] $kubernetes_icon #[fg=cyan]$kubernetes_context:#[fg=red]$kubernetes_namespace #[fg=white]|#[bg=default,fg=$TC] $session_icon #S "
 if "$show_download_speed"; then
     RS="#[fg=$G1,bg=$G0]$larrow#[fg=$TC,bg=$G1] $download_speed_icon #{download_speed} $RS"
 fi
@@ -137,16 +116,17 @@ fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
 fi
+
 tmux_set status-right "$RS"
 
 # Window status format
-tmux_set window-status-format         "#[fg=$G0,bg=$G2]$rarrow#[fg=$TC,bg=$G2] #I:#W#F #[fg=$G2]#{?#{==:#{session_windows},#{window_index}},#[bg=$TC] ,#[bg=$G0]$rarrow}"
-tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$rarrow#[fg=$G0,bg=$TC,bold] #I:#W#F #[fg=$TC,nobold]#{?#{==:#{session_windows},#{window_index}},#[bg=$G0] ,#[bg=$G0]$rarrow}"
+tmux_set window-status-format         "#[fg=white,bg=default] #I #W #[fg=white]#{?#{==:#{session_windows},#{window_index}},,}"
+tmux_set window-status-current-format "#[fg=$TC,bg=default,bold] #I #W #[fg=white,nobold]#{?#{==:#{session_windows},#{window_index}},,}"
 
 # Window status style
-tmux_set window-status-style          "fg=$TC,bg=$G0,none"
-tmux_set window-status-last-style     "fg=$TC,bg=$G0,bold"
-tmux_set window-status-activity-style "fg=$TC,bg=$G0,bold"
+tmux_set window-status-style          "fg=$TC,bg=default,none"
+tmux_set window-status-last-style     "fg=$TC,bg=default,nobold"
+tmux_set window-status-activity-style "fg=$TC,bg=default,nobold"
 
 # Window separator
 tmux_set window-status-separator ""

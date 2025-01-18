@@ -87,6 +87,7 @@ tmux_set status on
 tmux_set status-bg "default"
 tmux_set status-fg "$G4"
 tmux_set status-attr none
+tmux_set status-position top
 
 # tmux-prefix-highlight
 tmux_set @prefix_highlight_show_copy_mode 'on'

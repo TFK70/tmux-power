@@ -123,8 +123,8 @@ fi
 tmux_set status-right "$RS"
 
 # Window status format
-tmux_set window-status-format         "#[fg=white,bg=default] #I #W #[fg=white]#{?#{==:#{session_windows},#{window_index}},,}"
-tmux_set window-status-current-format "#[fg=$TC,bg=default,bold] #I #W #[fg=white,nobold]#{?#{==:#{session_windows},#{window_index}},,}"
+tmux_set window-status-format         "#[fg=white,bg=default] #I #{b:pane_current_path} #[fg=white]#{?#{==:#{session_windows},#{window_index}},,}"
+tmux_set window-status-current-format "#[fg=$TC,bg=default,bold] #I #{b:pane_current_path} #[fg=white,nobold]#{?#{==:#{session_windows},#{window_index}},,}"
 
 # Window status style
 tmux_set window-status-style          "fg=$TC,bg=default,none"

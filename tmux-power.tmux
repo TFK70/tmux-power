@@ -109,7 +109,7 @@ tmux_set status-right-bg "$G0"
 tmux_set status-right-length 150
 # Not using global config anymore
 # RS="$RS#[fg=$TC,bg=default] $kubernetes_icon #[fg=cyan]$kubernetes_context:#[fg=red]$kubernetes_namespace "
-RS="$RS#[fg=white]|#[bg=default,fg=$TC] $session_icon #S "
+RS="$RS#[bg=default,fg=$TC] $session_icon #S "
 RS="$RS"
 if "$show_download_speed"; then
     RS="#[fg=$G1,bg=$G0]$larrow#[fg=$TC,bg=$G1] $download_speed_icon #{download_speed} $RS"
